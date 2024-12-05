@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Web Platform - Linear Regression</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">ML Web Platform - Linear Regression</h1>
+        
+        <!-- Dataset Selection -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h4>Select Dataset</h4>
+            </div>
+            <div class="card-body">
+                <form id="dataset-form">
+                    <div class="form-group">
+                        <label for="dataset">Choose a dataset:</label>
+                        <select class="form-control" id="dataset" name="dataset_name">
+                            {% for dataset in datasets %}
+                            <option value="{{ dataset.name }}">{{ dataset.description }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Load Dataset</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Dataset Info -->
+        <div id="dataset-info" class="card mb-4" style="display: none;">
+            <div class="card-header">
+                <h4>Dataset Information</h4>
+            </div>
+            <div class="card-body">
+                <p>Number of samples: <span id="n-samples"></span></p>
+                <p>Number of features: <span id="n-features"></span></p>
+                <p>Features: <span id="feature-names"></span></p>
+            </div>
+        </div>
+
+        <!-- Training Button -->
+        <div id="training-section" style="display: none;">
+            <button id="train-button" class="btn btn-success mb-4">Train Linear Regression Model</button>
+        </div>
+
+        <!-- Results -->
+        <div id="results" class="card" style="display: none;">
+            <div class="card-header">
+                <h4>Training Results</h4>
+            </div>
+            <div class="card-body">
+                <h5>Model Performance:</h5>
+                <ul>
+                    <li>R² Score: <span id="r2-score"></span></li>
+                    <li>Mean Squared Error: <span id="mse"></span></li>
+                    <li>Root Mean Squared Error: <span id="rmse"></span></li>
+                    <li>Mean Absolute Error: <span id="mae"></span></li>
+                </ul>
+                
+                <h5>Model Parameters:</h5>
+                <div id="coefficients"></div>
+                <p>Intercept: <span id="intercept"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
