@@ -10,7 +10,6 @@ class DatasetLoader:
     def get_available_datasets():
         """Return list of available sklearn datasets"""
         return [
-            {'name': 'boston', 'description': 'Boston House Prices'},
             {'name': 'diabetes', 'description': 'Diabetes Disease Progression'},
             {'name': 'california', 'description': 'California Housing Prices'}
         ]
@@ -18,9 +17,7 @@ class DatasetLoader:
     @staticmethod
     def load_dataset(dataset_name):
         """Load a specific dataset"""
-        if dataset_name == 'boston':
-            data = datasets.load_boston()
-        elif dataset_name == 'diabetes':
+        if dataset_name == 'diabetes':
             data = datasets.load_diabetes()
         elif dataset_name == 'california':
             data = datasets.fetch_california_housing()
